@@ -1,11 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { MessagesRepository } from './messages.repository';
 
+@Injectable() // 서비스를 DI 컨테이너에 등록
 export class MessagesService {
-  messagesRepo: MessagesRepository;
-
-  constructor() {
-    this.messagesRepo = new MessagesRepository();
-  }
+  constructor(private messagesRepo: MessagesRepository) {}
 
   findOne(id: string) {
     return this.messagesRepo.findOne(id);
